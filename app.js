@@ -15,10 +15,7 @@ app.set('views', './views')
 app.set('view engine', 'mustache')
 app.use(expressValidator());
 
-app.use(function (req,res,next){
-console.log("in interceptor");
-  next();
-})
+
 
 app.get('/', function(req,res) {
   res.render('home')
@@ -29,6 +26,20 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }))
+
+const username_password =[]
+
+app.use(function(req,res, next){
+  console.log("in interceptor");
+
+  // if req.url == '/login'
+     //     next()
+     // else if !req.session.login
+     //     res.render('login')
+     // else
+     //     next()
+     next();
+})
 
 app.post('/login', function (req, res) {
   console.log("username is" + req.body.undername);
