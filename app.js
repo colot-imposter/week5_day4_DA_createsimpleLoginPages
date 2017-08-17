@@ -2,13 +2,17 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const expressValidator = require('express-validator');
 const mustacheExpress = require('mustache-express');
+const session = require('express-session')
 
 const app = express();
 
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({
-  extended: false
-}));
+
+app.use(bodyParser.urlencoded({extended: false}));
+
+app.engine('mustache', mustacheExpress())
+app.set('views', './views')
+app.set('view engine', 'mustache')
 app.use(expressValidator());
 
 app.use(function (req,res,next){
@@ -17,8 +21,14 @@ console.log("in interceptor");
 })
 
 app.get('/', function(req,res) {
-  res.render('login')
+  res.render('home')
 })
+
+app.use(session({
+  secret: "whomp",
+  resave: false,
+  saveUninitialized: true
+}))
 
 app.post('/login', function (req, res) {
   console.log("username is" + req.body.undername);
@@ -26,11 +36,6 @@ app.post('/login', function (req, res) {
   res.render('home')
 
 })
-
-
-app.engine('mustache', mustacheExpress());
-app.set('views', './views')
-app.set('view engine', 'mustache')
 
 //Listening on root
 app.get('/', function(req, res) {
