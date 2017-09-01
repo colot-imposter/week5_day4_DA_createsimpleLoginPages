@@ -7,11 +7,13 @@
   <body>
     <h1>Login</h1>
     <form class="" action="/login" method="post">
-      <input type="text" name="username" value="">
-      <input type="password" name="password" value="">
+      <input type="text" name="username" placeholder="put your USERNAME here...">
+      <input type="password" name="password" placeholder="put your PASSWORT here...">
       <input type="submit" name="subbttn" value="Submit">
-
     </form>
+    {{#error}}
+<p>Du werdest nie nach Hause sehen2</p>
+    {{/error}}
 
   </body>
 </html>
