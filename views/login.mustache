@@ -2,18 +2,17 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Login</title>
+    <title>login page</title>
   </head>
   <body>
-    <h1>Login</h1>
+    <h1>Log In</h1>
     <form class="" action="/login" method="post">
-      <input type="text" name="username" placeholder="put your USERNAME here...">
-      <input type="password" name="password" placeholder="put your PASSWORT here...">
-      <input type="submit" name="subbttn" value="Submit">
+      <input type="text" name="username" value="" placeholder="Username">
+      <input type="password" name="password" value="" placeholder="Password">
+      <button type="submit" name="button">SUBMIT</button>
     </form>
-    {{#error}}
-<p>Du werdest nie nach Hause sehen2</p>
-    {{/error}}
-
+    {{#oops}}
+      <p>Invalid Passwort order Username, verandere bitte</p>
+    {{/oops}}
   </body>
 </html>
